@@ -77,9 +77,11 @@ class Bird(pygame.sprite.Sprite):
             self.image = self.images[self.index]
 
             #rotate bird
-            pygame.transform.rotate(self.images[self.index], self.vel * -2)
+            self.image = pygame.transform.rotate(
+            self.images[self.index], self.vel * -2
+            )
         else:
-            pygame.transform.rotate(self.images[self.index], -90)
+            self.image = pygame.transform.rotate(self.images[self.index], -90)
 
 
 
@@ -119,12 +121,18 @@ while run:
 
 
 
-    #background
-    screen.blit(bg,(0,0))
-    bird_group.draw(screen)
-    bird_group.update()
+    # Background
+    screen.blit(bg, (0, 0))
 
+    # Update and draw pipes
+    pipe_group.update()
     pipe_group.draw(screen)
+
+    # Update and draw bird
+    bird_group.update()
+    bird_group.draw(screen)
+
+
 
 
     #draw ground
@@ -132,7 +140,7 @@ while run:
 
     #LOOK for collision
     if pygame.sprite.groupcollide(bird_group,pipe_group,False,False) or flappy.rect.top < 0:
-        game_over==True
+        game_over=True
 
 
 
@@ -156,7 +164,7 @@ while run:
             pipe_group.add(btm_pipe)
             pipe_group.add(top_pipe)
             last_pipe=time_now
-            pipe_group.update()
+           
 
         ground_scroll -= scroll_speed
         if abs(ground_scroll) >= group_img.get_width():
