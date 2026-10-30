@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+# Environment Variables
+.env
+# Build / Distribution
+build/
+dist/
+*.egg-info/
+# IDEs
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Pygame
+*.sav
+*.bak
+screenshots/
+assets/generated/
+
+# Misc
+*.tmp
+*.swp
