@@ -6,12 +6,12 @@ import random
 pygame.init()
 
 clock = pygame.time.Clock()
-fps=30
+fps=40
 
 
 
-screen_width = 864
-screen_height = 920
+screen_width = 764
+screen_height = 820
 
 
 #Define font
@@ -24,8 +24,8 @@ ground_scroll=0
 scroll_speed = 4
 flying = False
 game_over=False
-pipe_gap = 150
-pipe_frequency = 1500 #milliseconds 
+pipe_gap = 170
+pipe_frequency = 2500 #milliseconds 
 last_pipe = pygame.time.get_ticks() - pipe_frequency
 score = 0
 pass_pipe=False
@@ -42,11 +42,18 @@ def draw_text(text, font , text_col , x ,y):
     screen.blit(img,(x,y))
 
 def reset_game():
+    global ground_scroll, pass_pipe, last_pipe
+
     pipe_group.empty()
-    flappy.rect.x=100
-    flappy.rect.y=int(screen_height/2)
-    score=0
-    return score
+    flappy.rect.x = 100
+    flappy.rect.y = int(screen_height / 2)
+    flappy.vel = 0
+
+    ground_scroll = 0
+    pass_pipe = False
+    last_pipe = pygame.time.get_ticks() - pipe_frequency
+
+    return 0
 
 
 class Bird(pygame.sprite.Sprite):
@@ -169,7 +176,6 @@ while run:
     screen.blit(bg, (0, 0))
 
     # Update and draw pipes
-    pipe_group.update()
     pipe_group.draw(screen)
 
     # Update and draw bird
